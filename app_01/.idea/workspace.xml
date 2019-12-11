@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ChangeListManager">
+    <list default="true" id="07969b71-064e-43fe-af13-335adb255538" name="Default Changelist" comment="" />
+    <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="CoverageViewManager">
+    <option name="myElementSize" value="305" />
+  </component>
+  <component name="ProjectId" id="1UWZ9LYoWfIIBSbI90oOR6cWMyL" />
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/lib" />
+    <property name="settings.editor.selected.configurable" value="preferences.keymap" />
+  </component>
+  <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$" />
+    </key>
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/lib" />
+    </key>
+  </component>
+  <component name="RunDashboard">
+    <option name="ruleStates">
+      <list>
+        <RuleState>
+          <option name="name" value="ConfigurationTypeDashboardGroupingRule" />
+        </RuleState>
+        <RuleState>
+          <option name="name" value="StatusDashboardGroupingRule" />
+        </RuleState>
+      </list>
+    </option>
+  </component>
+  <component name="RunManager" selected="JavaScript Debug.18.vue-resource品牌列表.html">
+    <configuration name="13.vue-品牌开发案例.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/app_01/13.vue-品牌开发案例.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="15.vue生命周期函数.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/app_01/15.vue生命周期函数.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="16.vue-resource学习.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/app_01/16.vue-resource学习.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="17.客户端JSONP页面.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/app_01/17.客户端JSONP页面.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <configuration name="18.vue-resource品牌列表.html" type="JavascriptDebugType" temporary="true" nameIsGenerated="true" uri="http://localhost:63342/app_01/18.vue-resource品牌列表.html" useBuiltInWebServerPort="true">
+      <method v="2" />
+    </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="JavaScript Debug.18.vue-resource品牌列表.html" />
+        <item itemvalue="JavaScript Debug.17.客户端JSONP页面.html" />
+        <item itemvalue="JavaScript Debug.16.vue-resource学习.html" />
+        <item itemvalue="JavaScript Debug.15.vue生命周期函数.html" />
+        <item itemvalue="JavaScript Debug.13.vue-品牌开发案例.html" />
+      </list>
+    </recent_temporary>
+  </component>
+  <component name="SvnConfiguration">
+    <configuration />
+  </component>
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="07969b71-064e-43fe-af13-335adb255538" name="Default Changelist" comment="" />
+      <created>1575474158823</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1575474158823</updated>
+      <workItem from="1575474161873" duration="769000" />
+      <workItem from="1575553784280" duration="1819000" />
+      <workItem from="1575641677262" duration="182000" />
+      <workItem from="1575683488007" duration="11387000" />
+      <workItem from="1575773924370" duration="1068000" />
+      <workItem from="1575776239254" duration="2471000" />
+      <workItem from="1575890947553" duration="271000" />
+      <workItem from="1575891285901" duration="1579000" />
+      <workItem from="1575978347623" duration="118000" />
+      <workItem from="1575978621455" duration="8162000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
+  </component>
+  <component name="com.intellij.coverage.CoverageDataManagerImpl">
+    <SUITE FILE_PATH="coverage/app_01$17_JSONP_html.dat" NAME="17.客户端JSONP页面.html Coverage Results" MODIFIED="1575777416214" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="WipCoverageRunner" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" />
+  </component>
+</project>

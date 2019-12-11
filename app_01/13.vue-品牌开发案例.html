@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+<div id="app">
+    <div class="panel panel-primary">
+        <div class="panel-heading">
+            <h3 class="panel-title">添加品牌</h3>
+        </div>
+        <div class="panel-body form-inline">
+            <label>Id:
+                <input type="text" class="form-control" v-model="Id">
+            </label>
+            <label>Name:
+                <!--自定义按键修饰符-->
+                <input type="text" class="form-control" v-model="Name" @keyup.F2="Add">
+            </label>
+            <input type="button" value="添加" class="btn btn-primary" @click="Add">
+            <label>按名称搜索:<!--vue中自定义指令都以 v- 开头-->
+                <input type="text" class="form-control" v-model="keywords" id="search" v-focus v-color
+                       v-fontsize="'50px'">
+            </label>
+        </div>
+    </div>
+    <table class="table table-bordered table-hover table-striped">
+        <thead>
+        <tr>
+            <th>Id</th>
+            <th>Name</th>
+            <th>Ctime</th>
+            <th>Operation</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr v-for="item in search(keywords)" :key="item.id">
+            <td>{{item.id}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.ctime|dateFormat()}}</td>
+            <td>
+                <a href="" @click.prevent="del(item.id)">删除</a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>
+<script>
+    //定义全局过滤器处理时间的格式
+    Vue.filter('dateFormat', function (dateStr, patten = "") {
+        var dt = new Date(dateStr)
+        var y = dt.getFullYear()
+        var m = dt.getMonth() + 1
+        var d = dt.getDate()
+        // return y + '-' + m + '-' + d
+
+        if (patten && patten.toLowerCase() === 'yyyy-mm-dd') {
+            return `${y}-${m}-${d}` //使用模版字符串替换ymd
+        } else {
+            var hh = dt.getHours()
+            var mm = dt.getMinutes()
+            var ss = dt.getSeconds()
+            return `${y}-${m}-${d} ${hh}:${mm}:${ss}`
+        }
+    })
+    //自定义键盘修饰符
+    Vue.config.keyCodes.F2 = 113
+    //自定义指令 Vue.directive
+    //自定义指令时不需要加v-前缀，但是调用对时候必须在指令前加v-前缀
+    // 第一个参数:指令名称,参数2是一个对象，这个对象身上有一些指令相关的钩子函数，可以在特定的阶段执行相关的操作
+    Vue.directive('focus', {
+            bind: function (el) {//指令绑定到元素时执行，只执行一次
+                //注意，在每个函数中el永远是第一个参数，表示被绑定指令的元素
+                //在元素绑定了指令的时候还没有插入到dom中，只有插入dom中是才会执行
+                el.focus()
+            },
+            inserted: function (el) {//表示元素插入到dom中的时候会执行
+                el.focus()
+            },
+            updated: function () {//当Vnode更新的时候执行，可能会触发多次
+
+            }
+        }
+    )
+    //自定义一个设置字体颜色的指令
+    Vue.directive('color', {
+        bind: function (el) {
+            el.style.color = 'red'
+        }
+        }
+    )
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            Id: '',
+            Name: '',
+            keywords: '', //搜索关键字
+            list: [{
+                id: 1,
+                name: '奔驰',
+                ctime: new Date()
+            },
+                {
+                    id: 2,
+                    name: '宝马',
+                    ctime: new Date()
+                },
+            ]
+        },
+        methods: {
+            Add() {
+                this.list.push({
+                    id: this.Id,
+                    name: this.Name,
+                    ctime: new Date()
+                })
+                this.Id = this.Name = ''
+            },
+            del(id) {
+                console.log(id);
+
+                // this.list.some((item, i) => {
+                //     console.log(item);
+
+                //     if (item.id == id)
+                //         this.list.splice(i, 1)
+                //     return true;
+                // })
+                //使用findIndex
+                var index = this.list.findIndex(item => {
+                    if (item.id == id)
+                        return true;
+                })
+                this.list.splice(index, 1)
+
+            },
+            search(keywords) { //根据关键字检索
+                // var newList = []
+                // this.list.forEach(item => {
+                //   if (item.name.indexOf(keywords) != -1) {
+                //     newList.push(item)
+                //   }
+                // })
+                // return newList
+                return this.list.filter(item => {
+                    // if (item.name.indexOf(keywords) != -1)
+                    if (item.name.includes(keywords))
+                        return item
+                })
+
+            }
+        },
+        directives:{//自定义指令可以直接写function,function代表指令同时写在bind 和 update里面（这是一种简写）
+            'fontsize':function (el, binding) {
+                el.style.fontSize=parseInt(binding.value)+'px'
+            }
+        }
+    })
+    // document.getElementById('search').focus()
+</script>
+</body>
+
+</html>

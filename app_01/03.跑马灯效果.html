@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <script src="./lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <h4>{{msg}}</h4>
+    <input type="button" value="浪起来" @click="start">
+    <input type="button" value="别浪了" @click="stop">
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: '猥琐发育。。。别浪～～～',
+            intervalId: null,//定时器返回的Id
+        },
+        methods: {
+            start() {
+                //由于每次调用start方法都会开启一个定时器，所以需要判断当前定时器Id是否为null，不然不知道停止的是哪一个定时器
+                if (this.intervalId != null) return;
+                this.intervalId = setInterval(() => {
+                    // console.log(this.msg);
+                    let start = this.msg.substring(0, 1);
+                    let end = this.msg.substring(1);
+                    this.msg = end + start;
+                }, 400)
+            }, stop() {
+                clearInterval(this.intervalId);
+                this.intervalId=null;//清空定时器后必须ID重新赋值为null，否则下次点击start会运行不起来
+            }
+        }
+    })
+</script>
+</body>
+</html>

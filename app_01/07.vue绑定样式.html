@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+    <style>
+        .red{
+            color: red;
+        }
+        .thin{
+            font-width: 200;
+        }
+        .italic{
+            font-style: italic;
+        }
+        .active{
+            letter-spacing: 0.5em;
+        }
+        .dicoration{
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+<div id="app">
+<!--   <h1 :class="['thin','red',{'active':isactive}]">这是一个H1标签</h1>-->
+    <h1 :class="[classobj,classobj1]">这是一个H1标签</h1>
+</div>
+<script>
+    var vm= new Vue({
+        el:'#app',
+        data:{
+            classobj1:{dicoration:true},
+            classobj:{red:true,thin:true,italic:false,active:false}
+
+        },
+        methods:{
+
+        }
+    })
+</script>
+</body>
+</html>

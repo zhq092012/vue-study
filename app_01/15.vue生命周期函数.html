@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="./lib/vue.js"></script>
+    <script src="./lib/vue-resource.min.js"></script>
+    <link href="./css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div id="app">
+    <input type="button" value="编辑" @click="change">
+    <h3 id="h3">{{msg}}</h3>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            msg: 'ok'
+        },
+        methods: {
+            show() {
+                console.log('执行了show方法')
+            },
+            change() {
+                this.msg = 'not ok'
+            }
+        },
+        beforeCreate() {
+            // console.log(this.msg)
+            // this.show()
+            //注意：此时data 和 methods 中的对象都未初始化
+        },
+        created() {
+            //操作 data 和 methods最早从这里开始
+            console.log(this.msg)
+            console.log(this.show())
+            //注意： 此时 data 和 methods中的对象都已经初始化
+        }, beforeMount() {
+            //表示模版已经在内存中编译完成，但是尚未渲染到页面中去
+            console.log(document.getElementById('h3').innerText)
+
+        }, mounted() {
+            //用户已经可以看到挂在好的模版了
+            //操作DOM节点最早也要从mounted开始，此时vue实例就已经创建完成了
+            console.log(document.getElementById('h3').innerText)
+        }, beforeUpdate() {
+            //表示界面还没有被更新，数据被更新时触发，做少0次最多∞次
+            console.log('界面上的元素：' + document.getElementById('h3').innerText)
+            console.log('data中的数据' + this.msg)
+        },
+        updated() {
+            //将虚拟内存中的模版重新挂在到页面dom树
+            console.log('界面上的元素：' + document.getElementById('h3').innerText)
+            console.log('data中的数据' + this.msg)
+        },
+        beforeDestroy() {
+            //当执行到beforeDestroy时，data 和 methods filters directives 都还没有销毁
+        },
+        destroyed(){
+            //此时组件中所有的数据，方法，过滤器和指令都不可用了
+        }
+    })
+</script>
+</body>
+</html>

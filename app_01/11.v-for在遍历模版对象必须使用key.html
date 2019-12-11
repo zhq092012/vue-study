@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="lib/vue.js"></script>
+</head>
+<body>
+<div id="app">
+    <div>
+        <lable>Id:
+            <input type="text" v-model="Id">
+        </lable>
+        <lable>Name:
+            <input type="text" v-model="Name">
+        </lable>
+        <input type="button" value="添加" @click="add">
+    </div>
+    <!--key是必须使用v-bind指令绑定，且必须为数字或字符串-->
+    <p v-for="user in users" :key="user.id">
+        <input type="checkbox">{{user.id}}----{{user.name}}
+    </p>
+</div>
+<script>
+    var vm = new Vue({
+        el: '#app',
+        data: {
+            Id:'',
+            Name:'',
+            users: [
+                {
+                    id: 1,
+                    name: '李斯'
+                },
+                {
+                    id: 2,
+                    name: '嬴政'
+                },
+                {
+                    id: 3,
+                    name: '吕不韦'
+                }
+            ]
+        },
+        methods: {
+            add(){
+                // this.users.push({id:this.Id,name:this.Name})
+                this.users.unshift({id:this.Id,name:this.Name})//unshift忘数组前面插入值
+            }
+        }
+    })
+</script>
+</body>
+</html>
