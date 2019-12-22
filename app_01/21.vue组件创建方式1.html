@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="e">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-resource.min.js"></script>
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <my-com1></my-com1>
+    <mycom2></mycom2>
+    <mycom3></mycom3>
+    <login></login>
+  </div>
+  <!-- 在app之外定义template -->
+  <template id="temp">
+    <div>
+      <h1>这是通过template 元素定义的组件结构</h1>
+      <h4>不错！</h4>
+    </div>
+  </template>
+  <template id="login">
+    <div>
+      <h1>这是私有的组件</h1>
+    </div>
+  </template>
+  <script>
+    //创建组件
+    // var com1 = Vue.extend({
+    //   template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+    // })
+    //如果使用驼峰定义组件的名称，则在使用的时候要将大写的字母改成小写并改成使用“-”连接
+    // Vue.component('myCom1', com1)
+    Vue.component('myCom1', Vue.extend({
+      template: '<h3>这是使用 Vue.extend 创建的组件</h3>'
+    }))
+    //不论怎么创建组件，组件的template指向的模版内容必须是有且只有一个根元素
+    Vue.component('mycom2', {
+      template: '<h3>这是使用 Vue.component 创建的组件</h3>'
+    })
+    Vue.component('mycom3', {
+      template: '#temp'
+    })
+
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      methods: {},
+      filters: {},
+      directives: {},
+      components: {
+        //定义私有组件
+        login: {
+          template: '#login'
+        }
+      },
+      beforeCreate() {},
+      created() {},
+      beforeMount() {},
+      mounted() {},
+      beforeUpdate() {},
+      updated() {},
+      beforeDestroy() {},
+      destroyed() {}
+    })
+  </script>
+</body>
+
+</html>

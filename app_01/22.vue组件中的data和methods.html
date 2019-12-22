@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="e">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-resource.min.js"></script>
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <com1></com1>
+    <counter></counter>
+    <hr>
+    <counter></counter>
+    <hr>
+    <counter></counter>
+  </div>
+  <!-- counter 组件的模版 -->
+  <template id="countertemp">
+    <div>
+      <input type="button" value="+1" @click="increment">
+      <h3>{{count}}</h3>
+    </div>
+  </template>
+
+  <script>
+    //组件的data必须是一个function 返回一个对象
+    Vue.component('com1', {
+      template: '<h3>这是一个全局组件----{{msg}}</h3>',
+      data: function () {
+        return {
+          msg: '这是组件中data定义的数据'
+        }
+      }
+
+    })
+
+    //count组件
+    var obj = {
+      'count': 0
+    }
+
+    Vue.component('counter', {
+      template: '#countertemp',
+      data: function () {
+        // return obj 在外部定义data对象会出问题，页面多个组件的数据会共享
+        //正确做法
+        return {
+          'count': 0
+        }
+      },
+      methods: {
+        increment() {
+          this.count++
+        }
+      }
+    })
+
+
+    var vm = new Vue({
+      el: '#app',
+      data: {},
+      methods: {}
+    })
+  </script>
+</body>
+
+</html>
