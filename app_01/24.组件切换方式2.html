@@ -10,6 +10,18 @@
   <link rel="stylesheet" href="./css/animate.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <title>Document</title>
+  <style>
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(150px);
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease;
+    }
+  </style>
 </head>
 
 <body>
@@ -18,7 +30,11 @@
     <a href="" @click.prevent="comName='register'">注册</a>
     <!-- vue提供的component元素 component，template，transition，transitiGroup-->
     <!-- 当前学习了四个vue提供的标签元素 分别是  -->
-    <component :is="comName"></component>
+    <!-- 实现组件的动画效果 -->
+    <transition mode="out-in">
+      <component :is="comName"></component>
+    </transition>
+
   </div>
   <script>
     Vue.component('login', {
