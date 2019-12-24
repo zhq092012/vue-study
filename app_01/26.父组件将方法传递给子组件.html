@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="e">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-resource.min.js"></script>
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <com2 @func="show"></com2>
+  </div>
+
+
+  <template id="temp">
+    <div>
+      <h1>这是 子组件</h1>
+      <input type="button" value="这是子组件中的按钮，点击出发父组件传递过来的func方法" @click="myclick">
+    </div>
+  </template>
+
+
+  <script>
+    var com2 = {
+      template: '#temp',
+      data() {
+        return {
+          sonmsg: {
+            name: '小头儿子',
+            age: 6
+          }
+        }
+      },
+      methods: {
+        myclick() {
+          console.log('ok');
+          //当点击子组件时如何使用func方法并调用
+          //使用$emit出发父组件事件,传递两个参数给父组件
+          // this.$emit('func', 123, 456)
+          this.$emit('func', this.sonmsg)
+        }
+      }
+    }
+
+
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        datamsgfromson: null
+      },
+      methods: {
+        // show(data, data2) {
+        //   console.log('调用了父组件身上的show方法 ---调用传递过来参数:' + data + '---' + data2);
+
+        // }
+        show(data) {
+          console.log(data);
+          this.datamsgfromson = data //将子组件传递过来的参数保存到自己的data中
+        }
+      },
+      components: {
+        com2
+      }
+    })
+  </script>
+</body>
+
+</html>
