@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="e">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-resource.min.js"></script>
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="button" value="获取元素" @click="getElement">
+    <h3 ref="myh3">我是H3</h3>
+    <hr>
+    <login ref="mylogin"></login>
+  </div>
+  <script>
+    var login = {
+      template: '<h1>登录组件</h1>',
+      data() {
+        return {
+          msg: 'son msg'
+        }
+      },
+      methods: {
+        show() {
+          console.log('调用了子组件的方法');
+
+        }
+      }
+    }
+    var vm = new Vue({
+      el: '#app',
+      data: {
+
+      },
+      methods: {
+        getElement() {
+          // console.log(this.$refs.myh3.innerText);
+          //  通过组件引用获取组件数据
+          console.log(this.$refs.mylogin.msg);
+          //通过组件引用调用组件方法
+          this.$refs.mylogin.show();
+
+        }
+      },
+      components: {
+        login
+      }
+    })
+  </script>
+</body>
+
+</html>
