@@ -46,9 +46,13 @@
       methods: {},
       router,
       watch: {
-        'this.$route.path': function (newval, oldval) {
-          console.log(newval + '----' + oldval);
-
+        '$route.path': function (newval, oldval) {
+          // console.log(newval + '----' + oldval);
+          if (newval === '/login') {
+            console.log('欢迎进入登录页面');
+          } else if (newval === '/register') {
+            console.log('欢迎进入注册页面');
+          }
         }
       },
     })
