@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="e">
+<html lang="zh-cn">
 
 <head>
   <meta charset="UTF-8">
@@ -14,12 +14,43 @@
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <router-link to="/login">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <router-view></router-view>
+  </div>
   <script>
+    var login = {
+      template: '<h3>这是登录子组件</h3>'
+    }
+    var register = {
+      template: '<h3>这是注册子组件</h3>'
+    }
+    var router = new VueRouter({
+      routes: [{
+          path: '/',
+          redirect: '/login'
+        }, {
+          path: '/login',
+          component: login
+        },
+        {
+          path: '/register',
+          component: register
+        }
+      ]
+    })
     var vm = new Vue({
       el: '#app',
       data: {},
-      methods: {}
+      methods: {},
+      router,
+      watch: {
+        'this.$route.path': function (newval, oldval) {
+          console.log(newval + '----' + oldval);
+
+        }
+      },
     })
   </script>
 </body>
