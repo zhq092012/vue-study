@@ -7,18 +7,91 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <script src="./lib/vue.js"></script>
   <script src="./lib/vue-resource.min.js"></script>
+  <script src="./lib/vue-router.js"></script>
   <link rel="stylesheet" href="./css/animate.css">
   <link rel="stylesheet" href="./css/bootstrap.min.css">
   <title>Document</title>
+  <style>
+    .router-link-active {
+      color: red;
+      font-weight: 800;
+      font-style: italic;
+      font-size: 80px;
+      text-decoration: underline;
+      background-color: green;
+    }
+
+    .myactive {
+      font-size: 80px;
+      text-decoration: underline;
+      background-color: green;
+    }
+
+    .v-enter,
+    .v-leave-to {
+      opacity: 0;
+      transform: translateX(140px);
+    }
+
+    .v-enter-active,
+    .v-leave-active {
+      transition: all 0.5s ease;
+    }
+  </style>
 </head>
 
 <body>
-  <div id="app"></div>
+  <div id="app">
+    <!-- 路由基于hash所以前面要加# -->
+    <!-- <a href="#/login">登录</a>
+    <a href="#/register">注册</a> -->
+    <!-- 上面的方法不推荐 router-link 默认渲染a标签,tag将router-link展示为指定的标签-->
+    <router-link to="/login" tag="span">登录</router-link>
+    <router-link to="/register">注册</router-link>
+    <transition mode="out-in">
+      <router-view></router-view>
+    </transition>
+
+  </div>
   <script>
+    //组件的模版对象
+    var login = {
+      template: '<h1>登录组件</h1>'
+    }
+    var register = {
+      template: '<h1>注册组件</h1>'
+    }
+    // Vue.component('login', {
+    //   template: '<h1>登录组件</h1>'
+    // })
+    var routerObj = new VueRouter({
+      routes: [
+        //每个路由都有path
+        // {
+        //   path: '/',
+        //   component: login
+        // },
+        //上面的方法不推荐
+        {
+          path: '/',
+          redirect: '/login'
+        }, //使用重定向
+        {
+          path: '/login',
+          component: login //这里只能是组件的模版对象，不能放组件名称
+        },
+        {
+          path: '/register',
+          component: register //这里只能是组件的模版对象，不能放组件名称
+        }
+      ],
+      linkActiveClass: 'myactive'
+    })
     var vm = new Vue({
       el: '#app',
       data: {},
-      methods: {}
+      methods: {},
+      router: routerObj //将路由规则注册到vm实例中监听变化
     })
   </script>
 </body>
