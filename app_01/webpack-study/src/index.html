@@ -7,7 +7,9 @@
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
   <title>Document</title>
   <!-- 不推荐在这里用用js和css -->
-  <script src="./main.js"></script>
+  <!-- main中的代码涉及到了es6的新语法，但浏览器不识别，通过webpack把main.js处理生成bundle.js -->
+  <!-- <script src="./main.js"></script> -->
+  <script src="../dist/bundle.js"></script>
 </head>
 
 <body>
