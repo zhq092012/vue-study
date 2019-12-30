@@ -45,7 +45,7 @@
       data: {},
       methods: {},
       router,
-      watch: {
+      watch: { //更多监视虚拟的东西变化
         '$route.path': function (newval, oldval) {
           // console.log(newval + '----' + oldval);
           if (newval === '/login') {

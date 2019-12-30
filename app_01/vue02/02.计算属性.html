@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="e">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <script src="./lib/vue.js"></script>
+  <script src="./lib/vue-resource.min.js"></script>
+  <script src="./lib/vue-router.js"></script>
+  <link rel="stylesheet" href="./css/animate.css">
+  <link rel="stylesheet" href="./css/bootstrap.min.css">
+  <title>Document</title>
+</head>
+
+<body>
+  <div id="app">
+    <input type="text" v-model="firstname">+
+    <input type="text" v-model="middlename">+
+    <input type="text" v-model="lastname">=
+    <input type="text" v-model="fullname">
+    <!-- 引用fullname值不会重新计算 -->
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+    <p>{{fullname}}</p>
+  </div>
+  <script>
+    var vm = new Vue({
+      el: '#app',
+      data: {
+        firstname: '',
+        lastname: '',
+        middlename: ''
+      },
+      methods: {
+
+      },
+      computed: { //定义计算属性，计算属性本质就是一个方法，只不过在使用计算属性的时候，把名称当作属性使用，并不会当作方法去调用
+        //1.计算属性在调用时不用加（）去调用，直接当普通属性使用
+        //2.只要计算属性内部所用到的data发生变化就会立即重新计算计算属性的值
+        //3.计算属性的求值结果会被缓存起来，方便下次调用，如果内部data没有发生变化，就不会重新求值
+        fullname: function () {
+          console.log('ok');
+
+          return this.firstname + this.middlename + this.lastname
+        }
+
+      },
+    })
+  </script>
+</body>
+
+</html>
